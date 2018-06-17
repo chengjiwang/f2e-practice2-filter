@@ -1,0 +1,59 @@
+.header {
+  .logo {
+    background: $nav-bg;
+    text-align: center;
+    a {
+      text-decoration: none;
+    }
+  }
+  .search {
+    background: $filter-bg;
+    .icon-search {
+      color: $nav-dark-color;
+      font-size: 20px;
+    }
+    input {
+      width: 330px;
+      margin-left: -15px;
+      padding: 10px 10px 10px 25px;
+      outline: none;
+      border: none;
+      border-bottom: 1px solid $nav-dark-color;
+      background: transparent;
+      color: $nav-dark-color;
+    }
+  }
+  @include media-breakpoint-up(sm) { 
+    background: $nav-bg;
+    .search {
+      background: $nav-bg;
+      .icon-search {
+        color: $nav-light-color;
+      }
+      input {
+        border-bottom: 1px solid $nav-light-color;
+        color: $nav-light-color;
+      }
+    }
+  }
+}
+
+.content {
+  background: $list-bg;
+}
+.filter-item {
+  background: $filter-bg;
+  .select-area {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.travel-list {
+  margin-top: 15px;
+  .cart-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+  }
+}
