@@ -1,12 +1,13 @@
 .header {
   .logo {
-    background: $nav-bg;
-    text-align: center;
+    // background: $nav-bg;
+    // text-align: center;
     a {
       text-decoration: none;
     }
   }
   .search {
+    color: $nav-light-color;
     background: $filter-bg;
     .icon-search {
       color: $nav-dark-color;
