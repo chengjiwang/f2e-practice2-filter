@@ -83,8 +83,8 @@ $theme-colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $theme-colors: map-merge(
   (
-    "primary":    #7828B4, //$primary,
-    "secondary":  #9013FE,//$secondary,
+    "primary":    #0c9, //$primary,
+    "secondary":  #0c5,//$secondary,
     "success":    $success,
     "info":       $info,
     "warning":    $warning,
@@ -952,9 +952,11 @@ $print-page-size:                   a3 !default;
 $print-body-min-width:              map-get($grid-breakpoints, "lg") !default;
 
 // custom
-$nav-bg: #7828B4;
+$nav-bg: #0c9;
 $nav-light-color: #ffffff;
 $nav-dark-color: #000000;
 
 $filter-bg :#EBEBEB ;
 $list-bg :#F2F2F2;
+
+$icon-color: orange;

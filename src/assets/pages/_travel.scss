@@ -1,0 +1,29 @@
+.content {
+  background: $list-bg;
+}
+.filter-item {
+  background: $filter-bg;
+  .select-area {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.travel-list {
+  margin-top: 15px;
+  .cart-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+  }
+  .card-text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .card-body i {
+    color: $icon-color;
+  }
+}

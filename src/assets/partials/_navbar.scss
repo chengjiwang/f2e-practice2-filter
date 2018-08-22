@@ -38,23 +38,3 @@
     }
   }
 }
-
-.content {
-  background: $list-bg;
-}
-.filter-item {
-  background: $filter-bg;
-  .select-area {
-    display: block;
-    margin: 0 auto;
-  }
-}
-
-.travel-list {
-  margin-top: 15px;
-  .cart-img {
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-  }
-}
