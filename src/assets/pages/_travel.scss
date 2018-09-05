@@ -1,12 +1,14 @@
-.content {
+body {
   background: $list-bg;
 }
 .filter-item {
   background: $filter-bg;
-  .select-area {
-    display: block;
-    margin: 0 auto;
+  .el-input {
+    font-size: 16px;
   }
+}
+.el-select-dropdown__item {
+  font-size: 16px;
 }
 
 .travel-list {

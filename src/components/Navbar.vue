@@ -9,10 +9,27 @@
           <div class="search d-flex justify-content-center justify-content-lg-start
             align-items-center navbar-text col-12 col-sm-8">
             <i class="fas fa-search icon-search"></i>
-            <input type="text" class="h5 mb-0" placeholder="Search" aria-label="Search">
+            <input type="text" class="mb-0" placeholder="Search" aria-label="Search"
+            @change="updateSearch" v-model="text">
           </div>
         </div>
       </div>
     </nav>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      text: '',
+    };
+  },
+  methods: {
+    updateSearch() {
+      this.$emit('search',this.text);
+    }
+  },
+};
+</script>
+
