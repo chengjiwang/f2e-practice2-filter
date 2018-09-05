@@ -81,6 +81,7 @@
 <script>
 // import Navbar from './Navbar';
 import List from './List';
+import json from '../data.json';
 
 export default {
   data() {
@@ -166,6 +167,11 @@ export default {
     vm.$http.get(url).then((response) => {
       vm.data = response.data.result.records;
       vm.getAreas();
+    }).catch((error) => {
+      if (error) {
+        vm.data = json.result.records;
+        vm.getAreas();
+      }
     });
   },
 };
