@@ -1,21 +1,10 @@
 # vue-filter
 
-> A Vue.js project
+使用 vue 製作高雄旅遊景點資訊，功能包含過濾區域，過濾免費參觀，搜尋景點。
 
-## Build Setup
+Demo 連結：[Demo](https://chengjiwang.github.io/vue-filter/)
 
-``` bash
-# install dependencies
-npm install
+# Preview
 
-# serve with hot reload at localhost:8080
-npm run dev
+![Image](https://raw.githubusercontent.com/chengjiwang/vue-filter/master/demoImage/vue-filter.png)
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
