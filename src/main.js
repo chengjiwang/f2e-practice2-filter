@@ -8,6 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 // import './assets/helpers/_element-variables.scss';
 import App from './App';
 import router from './router';
+import './bus';
 
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);

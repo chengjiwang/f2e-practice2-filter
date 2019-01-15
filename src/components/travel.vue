@@ -1,21 +1,6 @@
 <template>
   <div>
-    <!-- <Navbar @search="updateSearchText" /> -->
-    <nav class="navbar-dark bg-primary header">
-      <div class="container">
-        <div class="row">
-          <h1 class="logo text-center navbar-text mb-0 col-12 col-sm-4">
-            <a href="#">HaveFun</a>
-          </h1>
-          <div class="search d-flex justify-content-center justify-content-lg-start
-            align-items-center navbar-text col-12 col-sm-8">
-            <i class="fas fa-search icon-search"></i>
-            <input type="text" class="mb-0" placeholder="Search" aria-label="Search"
-              v-model="searchText">
-          </div>
-        </div>
-      </div>
-    </nav>
+    <Navbar />
     <section class="content">
       <div class="container">
         <div class="row">
@@ -79,7 +64,7 @@
 </template>
 
 <script>
-// import Navbar from './Navbar';
+import Navbar from './Navbar';
 import List from './List';
 import json from '../data.json';
 
@@ -97,7 +82,7 @@ export default {
     };
   },
   components: {
-    // Navbar,
+    Navbar,
     List,
     // Sidebar,
     // Alert
@@ -127,9 +112,6 @@ export default {
       const regex = new RegExp(SearchString, 'gi');
       return SearchData.Name.match(regex) || SearchData.Description.match(regex);
     },
-    // updateSearchText(text) {
-    //   this.searchText = text;
-    // },
   },
   computed: {
     filterData() {
@@ -172,6 +154,11 @@ export default {
         vm.data = json.result.records;
         vm.getAreas();
       }
+    });
+    vm.$bus.$on('search:update', (searchText) => {
+      // eslint-disable-next-line
+      console.log(searchText);
+      vm.searchText = searchText;
     });
   },
 };

@@ -10,7 +10,7 @@
             align-items-center navbar-text col-12 col-sm-8">
             <i class="fas fa-search icon-search"></i>
             <input type="text" class="mb-0" placeholder="Search" aria-label="Search"
-            @change="updateSearch" v-model="text">
+              v-model="searchText">
           </div>
         </div>
       </div>
@@ -22,13 +22,15 @@
 export default {
   data() {
     return {
-      text: '',
+      searchText: '',
     };
   },
-  methods: {
-    updateSearch() {
-      this.$emit('search',this.text);
-    }
+  watch: {
+    searchText(text) {
+      const vm = this;
+      vm.searchText = text;
+      this.$bus.$emit('search:update', text);
+    },
   },
 };
 </script>
