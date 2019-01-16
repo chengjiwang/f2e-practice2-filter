@@ -1,33 +1,14 @@
 <template>
   <div>
     <Navbar />
-    <section class="content">
+    <main class="content">
       <div class="container">
         <div class="row">
           <div class="filter-item py-3 col-12 col-sm-4">
-            <div class="sticky-top pt-3">
-              <p class="h5">選擇景點區域</p>
-              <el-select v-model="currentArea" placeholder="全部景點" class="w-100">
-                <el-option
-                  v-for="(area, key) in areas"
-                  :key="key"
-                  :label="area"
-                  :value="area">
-                </el-option>
-              </el-select>
-              <div class="mt-3">
-                <input type="checkbox" id="freeTicket" value="免費參觀" v-model="checkedTicket">
-                <label for="freeTicket">免費參觀</label>
-                <!-- <el-checkbox v-model="checkedTicket"
-                  class="color: orange">免費參觀</el-checkbox> -->
-              </div>
-            </div>
+            <Sidebar :areaData="areas" />
           </div>
           <div class="list col-12 col-sm-8">
-            <p class="h4 mt-4">符合的結果：共 {{ result }}筆 </p>
-            <!-- <button type="button" class="btn btn-outline-primary">三民區</button>
-            <button type="button" class="btn btn-outline-primary">前鎮區</button> -->
-
+            <p class="h4 mt-4">符合的結果：共 {{ result }} 筆 </p>
             <ul class="pl-0">
               <List class="travel-list card mb-3 d-flex flex-column flex-md-row"
                 :item="item" v-for="item in filterData[currentPage]" :key="item.Id"> </List>
@@ -59,12 +40,13 @@
           </div>
         </div>
       </div>
-    </section>
+    </main>
   </div>
 </template>
 
 <script>
 import Navbar from './Navbar';
+import Sidebar from './Sidebar';
 import List from './List';
 import json from '../data.json';
 
@@ -84,10 +66,23 @@ export default {
   components: {
     Navbar,
     List,
-    // Sidebar,
+    Sidebar,
     // Alert
   },
   methods: {
+    getTravelData() {
+      const vm = this;
+      const url = 'https://data.kcg.gov.tw/api/action/datastore_search?resource_id=92290ee5-6e61-456f-80c0-249eae2fcc97';
+      vm.$http.get(url).then((response) => {
+        vm.data = response.data.result.records;
+        vm.getAreas();
+      }).catch((error) => {
+        if (error) {
+          vm.data = json.result.records;
+          vm.getAreas();
+        }
+      });
+    },
     getAreas() {
       const areas = new Set();
       this.data.forEach((item) => {
@@ -111,6 +106,26 @@ export default {
     isMatchSerch(SearchData, SearchString) {
       const regex = new RegExp(SearchString, 'gi');
       return SearchData.Name.match(regex) || SearchData.Description.match(regex);
+    },
+    setBusEvent() {
+      const vm = this;
+      vm.$bus.$on('filter:update', (content, kind) => {
+        switch (kind) {
+          case 'search':
+            vm.searchText = content;
+            break;
+          case 'currentArea':
+            vm.currentArea = content;
+            break;
+          case 'checkedTicket':
+            vm.checkedTicket = content;
+            break;
+          default:
+            vm.searchText = '';
+            vm.currentArea = '';
+            vm.checkedTicket = false;
+        }
+      });
     },
   },
   computed: {
@@ -145,21 +160,8 @@ export default {
   },
   created() {
     const vm = this;
-    const url = 'https://data.kcg.gov.tw/api/action/datastore_search?resource_id=92290ee5-6e61-456f-80c0-249eae2fcc97';
-    vm.$http.get(url).then((response) => {
-      vm.data = response.data.result.records;
-      vm.getAreas();
-    }).catch((error) => {
-      if (error) {
-        vm.data = json.result.records;
-        vm.getAreas();
-      }
-    });
-    vm.$bus.$on('search:update', (searchText) => {
-      // eslint-disable-next-line
-      console.log(searchText);
-      vm.searchText = searchText;
-    });
+    vm.getTravelData();
+    vm.setBusEvent();
   },
 };
 </script>
